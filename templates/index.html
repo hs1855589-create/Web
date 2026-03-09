@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ product.name }} | Product Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <div class="badge">Back to School Special</div>
+        <h1>{{ product.name }}</h1>
+        <p class="tagline">{{ product.tagline }}</p>
+
+        <div class="price-card">
+          <span>Now Available</span>
+          <strong>{{ product.price }}</strong>
+          <small>Per notebook</small>
+        </div>
+
+        <ul class="features">
+          <li><span>Size:</span> {{ product.size }}</li>
+          <li><span>Pages:</span> {{ product.pages }}</li>
+          <li><span>Cover:</span> {{ product.cover }}</li>
+          <li><span>Theme:</span> {{ product.theme }}</li>
+        </ul>
+
+        <button>Order Now</button>
+      </section>
+
+      <section class="preview" aria-label="Notebook visual preview">
+        <div class="mock-cover">
+          <div class="cover-title">STUDENT</div>
+          <p>Friends of the jungle have gathered to celebrate.</p>
+          <h2>Notebook</h2>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
