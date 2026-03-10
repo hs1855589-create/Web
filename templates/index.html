@@ -3,44 +3,80 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ product.name }} | Product Page</title>
+    <title>{{ platform.name }} | Color Prediction Trading</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
   </head>
   <body>
+    <header class="topbar">
+      <div class="brand">{{ platform.name }}</div>
+      <nav>
+        <a href="#markets">Markets</a>
+        <a href="#features">Features</a>
+        <a href="#start">Get Started</a>
+      </nav>
+      <button class="outline-btn">Login</button>
+    </header>
+
     <main class="page">
       <section class="hero">
-        <div class="badge">Back to School Special</div>
-        <h1>{{ product.name }}</h1>
-        <p class="tagline">{{ product.tagline }}</p>
+        <p class="eyebrow">Live Color Prediction Exchange</p>
+        <h1>Trade color outcomes with confidence and speed.</h1>
+        <p class="tagline">{{ platform.tagline }}</p>
 
-        <div class="price-card">
-          <span>Now Available</span>
-          <strong>{{ product.price }}</strong>
-          <small>Per notebook</small>
+        <div class="hero-actions">
+          <button>{{ platform.cta }}</button>
+          <span class="trust">{{ platform.trust_note }}</span>
         </div>
-
-        <ul class="features">
-          <li><span>Size:</span> {{ product.size }}</li>
-          <li><span>Pages:</span> {{ product.pages }}</li>
-          <li><span>Cover:</span> {{ product.cover }}</li>
-          <li><span>Theme:</span> {{ product.theme }}</li>
-        </ul>
-
-        <button>Order Now</button>
       </section>
 
-      <section class="preview" aria-label="Notebook visual preview">
-        <div class="mock-cover">
-          <div class="cover-title">STUDENT</div>
-          <p>Friends of the jungle have gathered to celebrate.</p>
-          <h2>Notebook</h2>
-        </div>
+      <section class="stats" aria-label="Key platform metrics">
+        <article>
+          <p>Daily Volume</p>
+          <strong>{{ platform.daily_volume }}</strong>
+        </article>
+        <article>
+          <p>Success Signals</p>
+          <strong>{{ platform.win_rate }}</strong>
+        </article>
+        <article>
+          <p>Average Payout</p>
+          <strong>{{ platform.avg_payout }}</strong>
+        </article>
+      </section>
+
+      <section class="market-grid" id="markets" aria-label="Active color markets">
+        {% for market in markets %}
+        <article class="market-card">
+          <h2>{{ market.name }}</h2>
+          <p>{{ market.window }}</p>
+          <small>{{ market.trend }}</small>
+          <div class="card-footer">
+            <span>Payout</span>
+            <strong>{{ market.payout }}</strong>
+          </div>
+        </article>
+        {% endfor %}
+      </section>
+
+      <section class="features" id="features">
+        <h3>Why professionals choose us</h3>
+        <ul>
+          <li>AI-assisted probability engine with real-time signal updates</li>
+          <li>Secure wallet, instant deposits, and fast settlement cycles</li>
+          <li>Advanced dashboards for risk management and strategy tuning</li>
+        </ul>
+      </section>
+
+      <section class="cta" id="start">
+        <h3>Ready to launch your first professional trade?</h3>
+        <p>Create your account and start predicting in under two minutes.</p>
+        <button>Create Free Account</button>
       </section>
     </main>
   </body>
