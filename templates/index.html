@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Period Analyzer Pro</title>
+    <title>{{ platform.name }} | Color Prediction Trading</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,71 +13,70 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
   </head>
   <body>
-    <main class="container">
-      <header class="hero">
-        <p class="chip">3 screenshot analysis</p>
-        <h1>Next Period Predictor</h1>
-        <p>
-          A simple professional dashboard that analyzes period, number, big/small, and color history,
-          then predicts the next period result.
-        </p>
-      </header>
+    <header class="topbar">
+      <div class="brand">{{ platform.name }}</div>
+      <nav>
+        <a href="#markets">Markets</a>
+        <a href="#features">Features</a>
+        <a href="#start">Get Started</a>
+      </nav>
+      <button class="outline-btn">Login</button>
+    </header>
 
-      <section class="prediction-card">
-        <h2>Predicted Next Result</h2>
-        <div class="prediction-grid">
-          <article>
-            <span>Next Period</span>
-            <strong>{{ prediction.next_period }}</strong>
-          </article>
-          <article>
-            <span>Number</span>
-            <strong class="number">{{ prediction.predicted_number }}</strong>
-          </article>
-          <article>
-            <span>Big / Small</span>
-            <strong>{{ prediction.predicted_big_small }}</strong>
-          </article>
-          <article>
-            <span>Color</span>
-            <strong>{{ prediction.predicted_colors | join(' + ') }}</strong>
-          </article>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">Live Color Prediction Exchange</p>
+        <h1>Trade color outcomes with confidence and speed.</h1>
+        <p class="tagline">{{ platform.tagline }}</p>
+
+        <div class="hero-actions">
+          <button>{{ platform.cta }}</button>
+          <span class="trust">{{ platform.trust_note }}</span>
         </div>
-        <p class="meta">
-          Confidence: <b>{{ prediction.confidence }}%</b> · Method: {{ prediction.method }}
-        </p>
       </section>
 
-      <section class="summary-grid">
-        <article><span>Total Rows</span><strong>{{ summary.rows }}</strong></article>
-        <article><span>Big / Small</span><strong>{{ summary.big_count }} / {{ summary.small_count }}</strong></article>
-        <article><span>Green Hits</span><strong>{{ summary.green_hits }}</strong></article>
-        <article><span>Red Hits</span><strong>{{ summary.red_hits }}</strong></article>
-        <article><span>Violet Hits</span><strong>{{ summary.violet_hits }}</strong></article>
+      <section class="stats" aria-label="Key platform metrics">
+        <article>
+          <p>Daily Volume</p>
+          <strong>{{ platform.daily_volume }}</strong>
+        </article>
+        <article>
+          <p>Success Signals</p>
+          <strong>{{ platform.win_rate }}</strong>
+        </article>
+        <article>
+          <p>Average Payout</p>
+          <strong>{{ platform.avg_payout }}</strong>
+        </article>
       </section>
 
-      <section class="table-wrap">
-        <h2>Analyzed History</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Period</th>
-              <th>Number</th>
-              <th>Big/Small</th>
-              <th>Color</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for row in rows %}
-            <tr>
-              <td>{{ row.period }}</td>
-              <td class="num">{{ row.number }}</td>
-              <td>{{ row.big_small }}</td>
-              <td>{{ row.colors | join(' + ') }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+      <section class="market-grid" id="markets" aria-label="Active color markets">
+        {% for market in markets %}
+        <article class="market-card">
+          <h2>{{ market.name }}</h2>
+          <p>{{ market.window }}</p>
+          <small>{{ market.trend }}</small>
+          <div class="card-footer">
+            <span>Payout</span>
+            <strong>{{ market.payout }}</strong>
+          </div>
+        </article>
+        {% endfor %}
+      </section>
+
+      <section class="features" id="features">
+        <h3>Why professionals choose us</h3>
+        <ul>
+          <li>AI-assisted probability engine with real-time signal updates</li>
+          <li>Secure wallet, instant deposits, and fast settlement cycles</li>
+          <li>Advanced dashboards for risk management and strategy tuning</li>
+        </ul>
+      </section>
+
+      <section class="cta" id="start">
+        <h3>Ready to launch your first professional trade?</h3>
+        <p>Create your account and start predicting in under two minutes.</p>
+        <button>Create Free Account</button>
       </section>
     </main>
   </body>
